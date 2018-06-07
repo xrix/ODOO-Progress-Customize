@@ -1,0 +1,90 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="view_komponen_form">
+      <field name="name">komponen form</field>
+      <field name="model">komponen</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+                <label for="waktu_pengerjaan"/>
+                <div>
+                  <field name="waktu_pengerjaan" class='oe_inline'/> Hari
+                </div>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_komponen_tree">
+      <field name="name">komponen list</field>
+      <field name="model">komponen</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="waktu_pengerjaan" string='Waktu pengerjaan (Hari)'/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_komponen_item_form">
+      <field name="name">komponen item form</field>
+      <field name="model">komponen.item</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <h2><field name="name" placeholder='Nama item'/></h2>
+            <group>
+              <group>
+                <field name="tanggal_mulai"/>
+                <field name="tanggal_expektasi"/>
+                <field name="tanggal_selesai"/>
+              </group>
+            </group>
+            <field name="line_ids" nolabel='1' view_mode='tree'>
+              <tree string='Komponen' editable='botom'>
+                <field name="komponen_id"/>
+                <field name="bobot"/>
+              </tree>
+            </field>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_komponen_item_tree">
+      <field name="name">komponen item tree</field>
+      <field name="model">komponen.item</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="tanggal_mulai"/>
+          <field name="tanggal_expektasi"/>
+          <field name="tanggal_selesai"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_komponen_tree">
+      <field name="name">Komponen</field>
+      <field name="res_model">komponen</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_item_tree">
+      <field name="name">Komponen Item</field>
+      <field name="res_model">komponen.item</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Komponen" id="menu_root"/>
+    <menuitem name="Komponen" id="menu_komponen_main" parent="menu_root" action="action_komponen_tree"/>
+    <menuitem name="Komponen Item" id="menu_item_main" parent="menu_root" action="action_item_tree"/>
+
+  </data>
+</odoo>
